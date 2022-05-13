@@ -151,7 +151,7 @@ class ADPCX_frame:
 			
 
 	def save(self):
-		name=tkFileDialog.asksaveasfile(mode='wb',defaultextension=".png")
+		name=tkFileDialog.asksaveasfile(mode='wb',defaultextension=".png",initialdir="images/")
 		im = Image.open('/tmp/foo.png')
 		im.save(name,format='png')
 
