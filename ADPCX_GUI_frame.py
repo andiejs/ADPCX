@@ -11,10 +11,6 @@ except ImportError:
     from tkinter import messagebox as tkMessageBox
 import sys, os
 import numpy as np
-#from scipy.io.wavfile import read
-#import dftModel_function
-#sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../models/'))
-#import utilFunctions as UF
 from matplotlib import pyplot as plt
 import ADPCX
 import PIL
@@ -64,12 +60,35 @@ class ADPCX_frame:
 #		self.preview = Button(self.parent, text=">", command=lambda:self.show_image(self.filelocation2.get(),"image2"), bg="gray30", fg="white")
 #		self.preview.grid(row=2, column=0, sticky=W, padx=(406,6))
 
+		Label(self.parent, text="Img1 coords:").grid(row=3, column=0, sticky=W, padx=5, pady=(10,2))
+		self.Ax = Entry(self.parent, justify=CENTER)
+		self.Ax["width"] = 5
+		self.Ax.grid(row=3,column=0, sticky=W, padx=(95,5), pady=(10,2))
+		self.Ax.delete(0, END)
+		self.Ax.insert(0, "0")
+		self.Ay = Entry(self.parent, justify=CENTER)
+		self.Ay["width"] = 5
+		self.Ay.grid(row=3,column=0, sticky=W, padx=(150,5), pady=(10,2))
+		self.Ay.delete(0, END)
+		self.Ay.insert(0, "0")
 
-		M_label = "Cutoff:"
-		Label(self.parent, text=M_label).grid(row=3, column=0, sticky=W, padx=5, pady=(10,2))
+		Label(self.parent, text="Img2 coords:").grid(row=4, column=0, sticky=W, padx=5, pady=(10,2))
+		self.Bx = Entry(self.parent, justify=CENTER)
+		self.Bx["width"] = 5
+		self.Bx.grid(row=4,column=0, sticky=W, padx=(95,5), pady=(10,2))
+		self.Bx.delete(0, END)
+		self.Bx.insert(0, "0")
+		self.By = Entry(self.parent, justify=CENTER)
+		self.By["width"] = 5
+		self.By.grid(row=4,column=0, sticky=W, padx=(150,5), pady=(10,2))
+		self.By.delete(0, END)
+		self.By.insert(0, "0")
+
+
+		Label(self.parent, text="Cutoff:").grid(row=5, column=0, sticky=W, padx=5, pady=(10,2))
 		self.M = Entry(self.parent, justify=CENTER)
 		self.M["width"] = 5
-		self.M.grid(row=3,column=0, sticky=W, padx=(70,5), pady=(10,2))
+		self.M.grid(row=5,column=0, sticky=W, padx=(65,5), pady=(10,2))
 		self.M.delete(0, END)
 		self.M.insert(0, "100")
 
@@ -77,7 +96,7 @@ class ADPCX_frame:
 
 
 
-                
+
 	
 		#BUTTON TO COMPUTE EVERYTHING
 		self.compute = Button(self.parent, text="Compute", command=self.compute_model, bg="dark red", fg="white")
@@ -116,11 +135,14 @@ class ADPCX_frame:
 			inputFile = self.filelocation.get()
 			inputFile2 = self.filelocation2.get()
 			cutoff = int(self.M.get())
+			ax = int(self.Ax.get())
+			ay = int(self.Ay.get())
+			bx = int(self.Bx.get())
+			by = int(self.By.get())
 		#	N = int(self.N.get())
 	#		time = float(self.time.get())
-			ADPCX.do_it(inputFile,inputFile2,"/tmp/foo.png",cutoff)
+			ADPCX.do_it(inputFile,inputFile2,"/tmp/foo.png",cutoff,ax,ay,bx,by)
 			self.show_four()	
-#			dftModel_function.main(inputFile, window, M, N, time)
 
 
 		except ValueError as errorMessage:

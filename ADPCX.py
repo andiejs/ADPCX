@@ -4,7 +4,7 @@ from PIL import ImageFilter
 from PIL import ImageChops
 from PIL import ImageOps
 
-def do_it (photo1,photo2,output,cutoff=100): # cutoff 0 -- 255
+def do_it (photo1,photo2,output,cutoff=100,ax=0,ay=0,bx=0,by=0): # cutoff 0 -- 255
     ph1 = Image.open(photo1)
     ph2 = Image.open(photo2)
 
@@ -13,8 +13,8 @@ def do_it (photo1,photo2,output,cutoff=100): # cutoff 0 -- 255
     bw,bh = ph2.size
     w = min(aw,bw)
     h = min(ah,bh)
-    ph1 = ph1.crop((0,0,w,h))
-    ph2 = ph2.crop((0,0,w,h))
+    ph1 = ph1.crop((ax,ay,w + ax,h + ay))
+    ph2 = ph2.crop((bx,by,w + bx,h + by))
 
     blur1 = ph1.filter(ImageFilter.BLUR)
     blur2 = ph2.filter(ImageFilter.BLUR)
