@@ -93,14 +93,15 @@ class ADPCX_frame:
 		self.M.insert(0, "100")
 
 
-
-
-
-
 	
 		#BUTTON TO COMPUTE EVERYTHING
 		self.compute = Button(self.parent, text="Compute", command=self.compute_model, bg="dark red", fg="white")
 		self.compute.grid(row=6, column=0, padx=5, pady=(10,15), sticky=W)
+
+		self.save = Button(self.parent, text="Save", command=self.save, bg="dark red", fg="white")
+		self.save.grid(row=7, column=0, padx=5, pady=(10,15), sticky=W)
+
+
 
 		# define options for opening file
 		self.file_opt = options = {}
@@ -149,6 +150,10 @@ class ADPCX_frame:
 			tkMessageBox.showerror("Input values error",errorMessage)
 			
 
+	def save(self):
+		name=tkFileDialog.asksaveasfile(mode='wb',defaultextension=".png")
+		im = Image.open('/tmp/foo.png')
+		im.save(name,format='png')
 
 	def show_four(self):  
 # create figure
