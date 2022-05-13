@@ -1,5 +1,3 @@
-# GUI frame for the dftModel_function.py
-
 try:
     # for Python2
     from Tkinter import *   ## notice capitalized T in Tkinter 
@@ -24,14 +22,16 @@ class ADPCX_frame:
 		self.initUI()
 
 	def initUI(self):
-
+		initialdir = "~/"
+		default_image_1 = 'gold.jpeg'
+		default_image_2 = 'brood.jpeg'
 		#TEXTBOX TO PRINT PATH OF THE FILE
 		self.filelocation = Entry(self.parent)
 		self.filelocation.focus_set()
 		self.filelocation["width"] = 37
 		self.filelocation.grid(row=1,column=0, sticky=W, padx=10)
 		self.filelocation.delete(0, END)
-		self.filelocation.insert(0, '/home/monster/Downloads/gold.jpeg')
+		self.filelocation.insert(0, default_image_1)
 
 		#BUTTON TO BROWSE FILE
 		self.open_file = Button(self.parent, text="Browse...", command=self.browse_file) #see: def browse_file(self)
@@ -50,7 +50,7 @@ class ADPCX_frame:
 		self.filelocation2["width"] = 37
 		self.filelocation2.grid(row=2,column=0, sticky=W, padx=10)
 		self.filelocation2.delete(0, END)
-		self.filelocation2.insert(0, '/home/monster/Downloads/brood.jpeg')
+		self.filelocation2.insert(0, default_image_2)
 
 		#BUTTON TO BROWSE FILE
 		self.open_file = Button(self.parent, text="Browse...", command=self.browse_file2) #see: def browse_file(self)
@@ -88,7 +88,7 @@ class ADPCX_frame:
 		Label(self.parent, text="Cutoff:").grid(row=5, column=0, sticky=W, padx=5, pady=(10,2))
 		self.M = Entry(self.parent, justify=CENTER)
 		self.M["width"] = 5
-		self.M.grid(row=5,column=0, sticky=W, padx=(65,5), pady=(10,2))
+		self.M.grid(row=5,column=0, sticky=W, padx=(95,5), pady=(10,2))
 		self.M.delete(0, END)
 		self.M.insert(0, "100")
 
@@ -107,7 +107,7 @@ class ADPCX_frame:
 		self.file_opt = options = {}
 		#options['defaultextension'] = '.wav'
 		#options['filetypes'] = [('All files', '.*'), ('Wav files', '.wav')]
-		options['initialdir'] = '/home/monster/Downloads/'
+		options['initialdir'] = initialdir
 		options['title'] = 'Open an impage file'
 
 	def show_image(self,path,title):
