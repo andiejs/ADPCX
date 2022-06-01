@@ -34,7 +34,7 @@ class ADPCX_frame:
 		self.filelocation.insert(0, default_image_1)
 
 		#BUTTON TO BROWSE FILE
-		self.open_file = Button(self.parent, text="Browse...", command=self.browse_file) #see: def browse_file(self)
+		self.open_file = Button(self.parent, text="Browse 1...", command=self.browse_file) #see: def browse_file(self)
 		self.open_file.grid(row=1, column=0, sticky=W, padx=(220 + 100, 6)) #put it beside the filelocation textbox
  
 		#BUTTON TO PREVIEW FILE
@@ -53,7 +53,7 @@ class ADPCX_frame:
 		self.filelocation2.insert(0, default_image_2)
 
 		#BUTTON TO BROWSE FILE
-		self.open_file = Button(self.parent, text="Browse...", command=self.browse_file2) #see: def browse_file(self)
+		self.open_file = Button(self.parent, text="Browse 2...", command=self.browse_file2) #see: def browse_file(self)
 		self.open_file.grid(row=2, column=0, sticky=W, padx=(320, 6)) #put it beside the filelocation textbox
  
 		#BUTTON TO PREVIEW FILE
@@ -127,8 +127,8 @@ class ADPCX_frame:
 		self.filename2 = tkFileDialog.askopenfilename(**self.file_opt)
  
 		#set the text of the self.filelocation
-		self.filelocation.delete(0, END)
-		self.filelocation.insert(0,self.filename2)
+		self.filelocation2.delete(0, END)
+		self.filelocation2.insert(0,self.filename2)
 
 	def compute_model(self):
 		
@@ -194,9 +194,11 @@ class ADPCX_frame:
 
 # Adds a subplot at the 4th position
 		fig.add_subplot(rows, columns, 4)
-
-# showing image
 		plt.imshow(Image4)
 		plt.axis('off')
 		plt.title("Result")
+
+
+		plt.subplots_adjust(left=0.05, bottom=0.05, right=0.95, top=0.95, wspace=0.0, hspace=0.12)
+                # showing image
 		plt.show()
