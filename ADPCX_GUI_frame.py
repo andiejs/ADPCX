@@ -23,7 +23,6 @@ class ADPCX_frame:
 
 	def initUI(self):
 		initialdir = "~/"
-		self.my_dir = initialdir
 		default_image_1 = 'gold.jpeg'
 		default_image_2 = 'brood.jpeg'
 		#TEXTBOX TO PRINT PATH OF THE FILE
@@ -111,7 +110,7 @@ class ADPCX_frame:
 		self.file_opt = options = {}
 		#options['defaultextension'] = '.wav'
 		#options['filetypes'] = [('All files', '.*'), ('Wav files', '.wav')]
-		options['initialdir'] = self.my_dir
+		options['initialdir'] = initialdir
 		options['title'] = 'Open an impage file'
 
 	def show_image(self,path,title):
