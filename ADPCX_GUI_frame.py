@@ -23,19 +23,20 @@ class ADPCX_frame:
 
 	def initUI(self):
 		initialdir = "~/"
+		self.my_dir = initialdir
 		default_image_1 = 'gold.jpeg'
 		default_image_2 = 'brood.jpeg'
 		#TEXTBOX TO PRINT PATH OF THE FILE
 		self.filelocation = Entry(self.parent)
 		self.filelocation.focus_set()
-		self.filelocation["width"] = 37
+		self.filelocation["width"] = 67
 		self.filelocation.grid(row=1,column=0, sticky=W, padx=10)
 		self.filelocation.delete(0, END)
 		self.filelocation.insert(0, default_image_1)
 
 		#BUTTON TO BROWSE FILE
 		self.open_file = Button(self.parent, text="Browse 1...", command=self.browse_file) #see: def browse_file(self)
-		self.open_file.grid(row=1, column=0, sticky=W, padx=(220 + 100, 6)) #put it beside the filelocation textbox
+		self.open_file.grid(row=1, column=0, sticky=W, padx=(560, 6)) #put it beside the filelocation textbox
  
 		#BUTTON TO PREVIEW FILE
 #		self.preview = Button(self.parent, text=">", command=lambda:self.show_image(self.filelocation.get(),"image1"), bg="gray30", fg="white")
@@ -47,14 +48,14 @@ class ADPCX_frame:
 
 		self.filelocation2 = Entry(self.parent)
 		self.filelocation2.focus_set()
-		self.filelocation2["width"] = 37
+		self.filelocation2["width"] = 67
 		self.filelocation2.grid(row=2,column=0, sticky=W, padx=10)
 		self.filelocation2.delete(0, END)
 		self.filelocation2.insert(0, default_image_2)
 
 		#BUTTON TO BROWSE FILE
 		self.open_file = Button(self.parent, text="Browse 2...", command=self.browse_file2) #see: def browse_file(self)
-		self.open_file.grid(row=2, column=0, sticky=W, padx=(320, 6)) #put it beside the filelocation textbox
+		self.open_file.grid(row=2, column=0, sticky=W, padx=(560, 6)) #put it beside the filelocation textbox
  
 		#BUTTON TO PREVIEW FILE
 #		self.preview = Button(self.parent, text=">", command=lambda:self.show_image(self.filelocation2.get(),"image2"), bg="gray30", fg="white")
@@ -98,8 +99,11 @@ class ADPCX_frame:
 		self.compute = Button(self.parent, text="Compute", command=self.compute_model, bg="dark red", fg="white")
 		self.compute.grid(row=6, column=0, padx=5, pady=(10,15), sticky=W)
 
+		self.compute = Button(self.parent, text="Preview", command=self.show_four, bg="dark red", fg="white")
+		self.compute.grid(row=7, column=0, padx=5, pady=(10,15), sticky=W)
+
 		self.save = Button(self.parent, text="Save", command=self.save, bg="dark red", fg="white")
-		self.save.grid(row=7, column=0, padx=5, pady=(10,15), sticky=W)
+		self.save.grid(row=8, column=0, padx=5, pady=(10,15), sticky=W)
 
 
 
@@ -107,7 +111,7 @@ class ADPCX_frame:
 		self.file_opt = options = {}
 		#options['defaultextension'] = '.wav'
 		#options['filetypes'] = [('All files', '.*'), ('Wav files', '.wav')]
-		options['initialdir'] = initialdir
+		options['initialdir'] = self.my_dir
 		options['title'] = 'Open an impage file'
 
 	def show_image(self,path,title):
@@ -121,6 +125,7 @@ class ADPCX_frame:
 		#set the text of the self.filelocation
 		self.filelocation.delete(0, END)
 		self.filelocation.insert(0,self.filename)
+		self.file_opt['initialdir'] = os.path.dirname(self.filename)
 
 	def browse_file2(self):
 		
@@ -129,6 +134,8 @@ class ADPCX_frame:
 		#set the text of the self.filelocation
 		self.filelocation2.delete(0, END)
 		self.filelocation2.insert(0,self.filename2)
+		self.file_opt['initialdir'] = os.path.dirname(self.filename2)
+
 
 	def compute_model(self):
 		
@@ -140,10 +147,7 @@ class ADPCX_frame:
 			ay = int(self.Ay.get())
 			bx = int(self.Bx.get())
 			by = int(self.By.get())
-		#	N = int(self.N.get())
-	#		time = float(self.time.get())
 			ADPCX.do_it(inputFile,inputFile2,"/tmp/foo.png",cutoff,ax,ay,bx,by)
-			self.show_four()	
 
 
 		except ValueError as errorMessage:
