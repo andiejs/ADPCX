@@ -35,7 +35,7 @@ class ADPCX_frame:
 
 		#BUTTON TO BROWSE FILE
 		self.open_file = Button(self.parent, text="Browse 1...", command=self.browse_file) #see: def browse_file(self)
-		self.open_file.grid(row=1, column=0, sticky=W, padx=(560, 6)) #put it beside the filelocation textbox
+		self.open_file.grid(row=1, column=0, sticky=W, padx=(1060, 6)) #put it beside the filelocation textbox
  
 		#BUTTON TO PREVIEW FILE
 #		self.preview = Button(self.parent, text=">", command=lambda:self.show_image(self.filelocation.get(),"image1"), bg="gray30", fg="white")
@@ -54,7 +54,7 @@ class ADPCX_frame:
 
 		#BUTTON TO BROWSE FILE
 		self.open_file = Button(self.parent, text="Browse 2...", command=self.browse_file2) #see: def browse_file(self)
-		self.open_file.grid(row=2, column=0, sticky=W, padx=(560, 6)) #put it beside the filelocation textbox
+		self.open_file.grid(row=2, column=0, sticky=W, padx=(1060, 6)) #put it beside the filelocation textbox
  
 		#BUTTON TO PREVIEW FILE
 #		self.preview = Button(self.parent, text=">", command=lambda:self.show_image(self.filelocation2.get(),"image2"), bg="gray30", fg="white")
@@ -63,24 +63,25 @@ class ADPCX_frame:
 		Label(self.parent, text="Img1 coords:").grid(row=3, column=0, sticky=W, padx=5, pady=(10,2))
 		self.Ax = Entry(self.parent, justify=CENTER)
 		self.Ax["width"] = 5
-		self.Ax.grid(row=3,column=0, sticky=W, padx=(95,5), pady=(10,2))
+		self.Ax.grid(row=3,column=0, sticky=W, padx=(185,5), pady=(10,2))
 		self.Ax.delete(0, END)
 		self.Ax.insert(0, "0")
 		self.Ay = Entry(self.parent, justify=CENTER)
 		self.Ay["width"] = 5
-		self.Ay.grid(row=3,column=0, sticky=W, padx=(150,5), pady=(10,2))
+		self.Ay.grid(row=3,column=0, sticky=W, padx=(285,5), pady=(10,2))
 		self.Ay.delete(0, END)
 		self.Ay.insert(0, "0")
 
 		Label(self.parent, text="Img2 coords:").grid(row=4, column=0, sticky=W, padx=5, pady=(10,2))
 		self.Bx = Entry(self.parent, justify=CENTER)
 		self.Bx["width"] = 5
-		self.Bx.grid(row=4,column=0, sticky=W, padx=(95,5), pady=(10,2))
+		self.Bx.grid(row=4,column=0, sticky=W, padx=(185,5), pady=(10,2))
 		self.Bx.delete(0, END)
 		self.Bx.insert(0, "0")
 		self.By = Entry(self.parent, justify=CENTER)
 		self.By["width"] = 5
-		self.By.grid(row=4,column=0, sticky=W, padx=(150,5), pady=(10,2))
+
+		self.By.grid(row=4,column=0, sticky=W, padx=(285,5), pady=(10,2))
 		self.By.delete(0, END)
 		self.By.insert(0, "0")
 
@@ -88,7 +89,7 @@ class ADPCX_frame:
 		Label(self.parent, text="Cutoff:").grid(row=5, column=0, sticky=W, padx=5, pady=(10,2))
 		self.M = Entry(self.parent, justify=CENTER)
 		self.M["width"] = 5
-		self.M.grid(row=5,column=0, sticky=W, padx=(95,5), pady=(10,2))
+		self.M.grid(row=5,column=0, sticky=W, padx=(105,5), pady=(10,2))
 		self.M.delete(0, END)
 		self.M.insert(0, "100")
 

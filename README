@@ -1,5 +1,38 @@
-based on: https://github.com/TommyMintz/APDC2.0
+(based on: https://github.com/TommyMintz/APDC2.0)
+
+download from:
+https://github.com/andiejs/ADPCX.git
 
 run:
 python collage.py
 
+
+
+any initial errors will probably be some missing library packages. read the errors and make sure you have the neceesary packages installed.
+
+
+requirements:
+python 3
+pip install tkinter numpy matplotlib
+for linux/ubuntu tkinter may be installed by apt rather than pip
+sudo apt-get install python3-tk 
+sudo apt-get install python3-pil python3-pil.imagetk
+
+
+
+
+
+how to use: 
+
+1) two image paths to mix
+2) the "top left" coordinate for each image (0,0) default
+3) experiment with the one parameter, cutoff
+4) hit compute (it will look like nothing's happening...)
+5) hit preview
+6) mess with the parameters and ***hit compute again***, then preview again 
+7) save when you're ready
+8) try mixing your result with a new image
+
+
+
+note: use the preview window to help see the (x,y) coordinates for the images 
