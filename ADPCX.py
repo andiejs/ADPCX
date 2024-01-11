@@ -4,7 +4,7 @@ from PIL import ImageFilter
 from PIL import ImageChops
 from PIL import ImageOps
 
-def do_it (photo1,photo2,output,cutoff=100,ax=0,ay=0,bx=0,by=0): # cutoff 0 -- 255
+def do_it (photo1,photo2,output,alphapath,cutoff=100,ax=0,ay=0,bx=0,by=0): # cutoff 0 -- 255
     ph1 = Image.open(photo1)
     ph2 = Image.open(photo2)
 
@@ -24,6 +24,6 @@ def do_it (photo1,photo2,output,cutoff=100,ax=0,ay=0,bx=0,by=0): # cutoff 0 -- 2
     alphachannel2 = Image.eval(alphachannel1,lambda px:0 if px < cutoff else 255)
     alphachannel3 = alphachannel2.filter(ImageFilter.BLUR)
     alphachannel3.convert('1')
-    alphachannel3.save("/tmp/alphachannel.png",format='png')
+    alphachannel3.save(alphapath,format='png')
     ph1.paste(ph2,None,alphachannel3)
     ph1.save(output,format='png')

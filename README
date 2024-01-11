@@ -4,14 +4,18 @@ download from:
 https://github.com/andiejs/ADPCX.git
 
 run:
-python collage.py
+python collage.py 
 
+
+on windows:
+install python
+pip install numpy  ## write this on a console
 
 
 any initial errors will probably be some missing library packages. read the errors and make sure you have the neceesary packages installed.
 
 
-requirements:
+linux requirements:
 python 3
 pip install tkinter numpy matplotlib
 for linux/ubuntu tkinter may be installed by apt rather than pip

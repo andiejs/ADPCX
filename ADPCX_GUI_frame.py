@@ -7,7 +7,7 @@ except ImportError:
     from tkinter import *  ## notice lowercase 't' in tkinter here
     from tkinter import filedialog as tkFileDialog
     from tkinter import messagebox as tkMessageBox
-import sys, os
+import sys, os, tempfile
 import numpy as np
 from matplotlib import pyplot as plt
 import ADPCX
@@ -15,7 +15,10 @@ import PIL
 from PIL import Image
 
 class ADPCX_frame:
-  
+	temp_path = os.path.join(tempfile.gettempdir(),"adpcx.png")
+	alpha_path = os.path.join(tempfile.gettempdir(),"alphachannel.png")
+	#temp_path = "/tmp/foo.png"
+	#alpha_path = "/tmp/alphachannel.png"   
 	def __init__(self, parent):  
 		 
 		self.parent = parent        
@@ -147,7 +150,7 @@ class ADPCX_frame:
 			ay = int(self.Ay.get())
 			bx = int(self.Bx.get())
 			by = int(self.By.get())
-			ADPCX.do_it(inputFile,inputFile2,"/tmp/foo.png",cutoff,ax,ay,bx,by)
+			ADPCX.do_it(inputFile,inputFile2,self.temp_path,self.alpha_path,cutoff,ax,ay,bx,by)
 
 
 		except ValueError as errorMessage:
@@ -156,7 +159,7 @@ class ADPCX_frame:
 
 	def save(self):
 		name=tkFileDialog.asksaveasfile(mode='wb',defaultextension=".png",initialdir="images/")
-		im = Image.open('/tmp/foo.png')
+		im = Image.open(self.temp_path)
 		im.save(name,format='png')
 
 	def show_four(self):  
@@ -170,8 +173,8 @@ class ADPCX_frame:
 # reading images
 		Image1 = np.array(Image.open(self.filelocation.get()))
 		Image2 = np.array(Image.open(self.filelocation2.get()))
-		Image3 = Image.open('/tmp/alphachannel.png')
-		Image4 = np.array(Image.open('/tmp/foo.png'))
+		Image3 = Image.open(self.alpha_path)
+		Image4 = np.array(Image.open(self.temp_path))
 
 # Adds a subplot at the 1st position
 		fig.add_subplot(rows, columns, 1)
